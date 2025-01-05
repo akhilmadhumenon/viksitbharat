@@ -19,21 +19,15 @@ export function ProjectsMap() {
   const projects = [
     {
       id: 1,
-      name: 'Bridge Construction',
-      lat: 28.7041,
-      lng: 77.1025,
+      name: 'Stadium Development',
+      lat: 18.516726,
+      lng: 73.856255,
     },
     {
       id: 2,
-      name: 'Road Expansion',
-      lat: 19.076,
-      lng: 72.8777,
-    },
-    {
-      id: 3,
-      name: 'Water Supply System',
-      lat: 13.0827,
-      lng: 80.2707,
+      name: 'Swimming Complex',
+      lat: 26.9124,
+      lng: 75.7873,
     },
   ];
 
