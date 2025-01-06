@@ -35,65 +35,67 @@ export function Header() {
   }, []);
 
   const NavLinks = () => (
-    <div className="flex flex-col space-y-2 lg:flex-row lg:space-y-0 lg:space-x-4">
-    <>
-      {user?.role === 'club_owner' && (
-        <>
-          <Link 
-            to="/fund-request" 
-            className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Request Funds
-          </Link>
-          <Link 
-            to="/my-requests" 
-            className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            My Requests
-          </Link>
-        </>
-      )}
-      {user?.role === 'government' && (
-        <>
-          <Link 
-            to="/requests" 
-            className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            View Requests
-          </Link>
-          <Link 
-            to="/escalation-matrix" 
-            className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Escalation Matrix
-          </Link>
-        </>
-      )}
-      {user?.role !== 'government' && user?.role !== 'club_owner' && (
-      <>  
-        <Link 
-        to="/about" 
-        className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        About Us
-      </Link>
-        <Link
-          to="/feedback"
-          className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-          onClick={() => setIsMobileMenuOpen(false)}
-        >
-          Submit Feedback
-        </Link>
+    <div className="flex flex-col space-y-2 lg:flex-col lg:space-y-4">
+      <>
+        {user?.role === 'club_owner' && (
+          <>
+            <Link 
+              to="/fund-request" 
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Request Funds
+            </Link>
+            <Link 
+              to="/my-requests" 
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              My Requests
+            </Link>
+          </>
+        )}
+        {user?.role === 'government' && (
+          <>
+            <Link 
+              to="/requests" 
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              View Requests
+            </Link>
+            <Link 
+              to="/escalation-matrix" 
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Escalation Matrix
+            </Link>
+          </>
+        )}
+        {user?.role !== 'government' && user?.role !== 'club_owner' && (
+          <>  
+            <Link 
+              to="/about" 
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              // className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium max-w-xs truncate"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              About Us
+            </Link>
+            <Link
+              to="/feedback"
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Submit Feedback
+            </Link>
+          </>
+        )}
       </>
-      )}
-    </>
     </div>
   );
+  
 
   return (
     <header className="bg-indigo-600 text-white">
@@ -107,8 +109,11 @@ export function Header() {
             >
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
-            <Link to="/" className="text-xl font-bold hover:text-indigo-100 ml-4">
-              Viksit Bharat Sports
+            <Link to="/">
+              <img src="vikas_logo.png" alt="Logo" className="h-12 w-auto mx-1" />
+            </Link>
+            <Link to="/" className="text-xxxl font-bold hover:text-indigo-100">
+              VIKAS
             </Link>
           </div>
 
@@ -144,9 +149,10 @@ export function Header() {
           </div>
         </div>
 
-        {/* Navigation Menu (Universal) */}
+        {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          <div className="py-4 space-y-2">
+          // <div className="py-4 space-y-2">
+          <div className={`py-4 space-y-2 bg-transparent`}>
             <NavLinks />
           </div>
         )}
