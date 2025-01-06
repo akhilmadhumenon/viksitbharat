@@ -110,7 +110,7 @@ export function Header() {
               {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
             <Link to="/">
-              <img src="vikas_logo.png" alt="Logo" className="h-12 w-auto mx-1" />
+              <img src="dist/assets/vikas_logo.png" alt="Logo" className="h-12 w-auto mx-1" />
             </Link>
             <Link to="/" className="text-xxxl font-bold hover:text-indigo-100">
               VIKAS
