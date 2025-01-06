@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -21,20 +21,39 @@ export function NotificationBell() {
       message: 'A new fund request has been submitted for review',
       date: '2024-03-15',
       type: 'request',
-      read: false
-    }
+      read: false,
+    },
   ]);
+
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  // Close the dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="relative">
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={toggleDropdown}
         className="relative"
       >
         <Bell className="h-6 w-6 text-white" />
-        {notifications.some(n => !n.read) && (
+        {notifications.some((n) => !n.read) && (
           <span className="absolute -top-1 -right-1 h-3 w-3 bg-red-500 rounded-full" />
         )}
       </motion.button>
@@ -42,6 +61,7 @@ export function NotificationBell() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={dropdownRef}
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -50,7 +70,7 @@ export function NotificationBell() {
             <div className="p-4">
               <h3 className="text-lg font-semibold mb-4 text-black">Notifications</h3>
               <div className="space-y-4">
-                {notifications.map(notification => (
+                {notifications.map((notification) => (
                   <Link
                     key={notification.id}
                     to="/updates"

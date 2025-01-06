@@ -46,11 +46,13 @@ export function AboutUs() {
             transition={{ delay: index * 0.1 }}
             className="bg-white rounded-lg shadow-lg overflow-hidden"
           >
-            <img
-              src={official.image}
-              alt={official.name}
-              className="w-full h-64 object-cover"
-            />
+            <div className="relative w-full" style={{ height: '320px' }}>
+              <img
+                src={official.image}
+                alt={official.name}
+                className="object-cover w-full aspect-w-3 aspect-h-4 h-full"
+              />
+            </div>
             <div className="p-6">
               <h3 className="text-xl font-semibold text-gray-900 mb-2">
                 {official.name}
