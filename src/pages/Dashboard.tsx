@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { StatCard } from '../components/dashboard/StatCard';
 import { ProjectsMap } from '../components/dashboard/ProjectsMap';
 import { Building2, TrendingUp, Users, IndianRupee } from 'lucide-react';
@@ -40,7 +41,10 @@ export function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ProjectsMap />
         <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-lg font-semibold mb-4">Recent Updates</h2>
+          <h2 className="text-lg font-semibold mb-4">
+            <Link to="/updates">
+            Recent Updates</Link>
+            </h2>
           <div className="space-y-4">
             <div className="border-l-4 border-indigo-600 pl-4">
               <p className="font-medium">New Stadium Approved in Pune</p>

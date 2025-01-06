@@ -1,15 +1,26 @@
 import React, { useState } from 'react';
-import { supabase } from '../../lib/supabase';
+import { demoInsert } from '../../lib/supabase';
 
 export function FeedbackForm() {
   const [title, setTitle] = useState('');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await supabase.from('feedback').insert([{ title, message }]);
-    setTitle('');
-    setMessage('');
+    setIsSubmitting(true);
+    
+    try {
+      await demoInsert('feedback', { title, message });
+      setTitle('');
+      setMessage('');
+      alert('Feedback submitted successfully!');
+    } catch (error) {
+      console.error('Error submitting feedback:', error);
+      alert('Failed to submit feedback. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -21,6 +32,7 @@ export function FeedbackForm() {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           className="mt-1 block w-full rounded-md border-2 border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+          required
         />
       </div>
       <div>
@@ -31,15 +43,16 @@ export function FeedbackForm() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={4}
-          // className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
           className="mt-1 block w-full rounded-md border-2 border-gray-300 bg-white shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+          required
         />
       </div>
       <button
         type="submit"
-        className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700"
+        disabled={isSubmitting}
+        className="bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Submit Feedback
+        {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
       </button>
     </form>
   );
