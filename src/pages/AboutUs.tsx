@@ -12,13 +12,13 @@ const officials: Official[] = [
   {
     name: "Dr. Mansukh L. Mandaviya",
     position: "Hon'ble Minister Of Youth Affairs and Sports",
-    image: "src/mansukh_sir.png",
+    image: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Mansukh_Mandaviya_Photo.jpg",
     contact: "office-moyas@gov.in"
   },
   {
     name: "Smt. Raksha Nikhil Khadse",
     position: "Hon'ble Minister of State for Youth Affairs & Sports",
-    image: "src/raksha_maam.avif",
+    image: "https://media.assettype.com/newindianexpress%2F2024-06%2Fe9f5be56-f8dc-4316-a525-413d2c339c1d%2FRaksha_Khadse.jpg",
     contact: "mos-yas21@gov.in"
   }
 ];
