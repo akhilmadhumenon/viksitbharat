@@ -20,7 +20,6 @@ export function Header() {
     setIsMobileMenuOpen(false);
   };
 
-  // Close the mobile menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -73,15 +72,21 @@ export function Header() {
             </Link>
           </>
         )}
-        {user?.role !== 'government' && user?.role !== 'club_owner' && (
+        {(!user || user?.role === 'public') && (
           <>  
             <Link 
               to="/about" 
               className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
-              // className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium max-w-xs truncate"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               About Us
+            </Link>
+            <Link
+              to="/infrastructure-projects"
+              className="inline-flex items-center space-x-2 bg-indigo-700 px-4 py-2 rounded-md hover:bg-indigo-800 transition-colors text-sm font-medium"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Infrastructure Projects
             </Link>
             <Link
               to="/feedback"
@@ -95,13 +100,11 @@ export function Header() {
       </>
     </div>
   );
-  
 
   return (
-    <header className="bg-indigo-600 text-white">
+    <header className="bg-indigo-600 text-white relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo and Mobile Menu Button */}
           <div className="flex items-center">
             <button
               className="p-2 rounded-md hover:bg-indigo-700"
@@ -117,7 +120,6 @@ export function Header() {
             </Link>
           </div>
 
-          {/* Right Section (Notifications and User) */}
           <div className="flex items-center space-x-4">
             <NotificationBell />
             {user ? (
@@ -149,10 +151,8 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
         {isMobileMenuOpen && (
-          // <div className="py-4 space-y-2">
-          <div className={`py-4 space-y-2 bg-transparent`}>
+          <div className="py-4 space-y-2 bg-transparent">
             <NavLinks />
           </div>
         )}

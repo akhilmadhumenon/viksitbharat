@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // Import Leaflet styles
+import { Link } from 'react-router-dom';
 import 'leaflet-css'; // If you installed leaflet-css separately
 import L from 'leaflet';
 
@@ -25,15 +26,37 @@ export function ProjectsMap() {
     },
     {
       id: 2,
-      name: 'Swimming Complex',
-      lat: 26.9124,
-      lng: 75.7873,
+      name: 'Olympic Swimming Complex',
+      lat: 28.7041,
+      lng: 77.1025,
+    },
+    {
+      id: 3,
+      name: 'Athletics Stadium',
+      lat: 30.7333,
+      lng: 76.7794,
+    },
+    {
+      id: 4,
+      name: 'Indoor Sports Arena',
+      lat: 13.0843,
+      lng: 80.2705,
+    },
+    {
+      id: 5,
+      name: 'Badminton Training Center',
+      lat: 12.9716,
+      lng: 77.5946,
     },
   ];
 
   return (
     <div className="bg-white rounded-lg shadow p-6">
-      <h2 className="text-lg font-semibold mb-4">Infrastructure Projects</h2>
+      <h2 className="text-lg font-semibold mb-4">
+            <Link to="/infrastructure-projects" className="hover:text-indigo-600 transition-colors">
+              Infrastructure Projects
+            </Link>
+      </h2>
       <div className="aspect-video rounded overflow-hidden">
         {/* Map Container */}
         <MapContainer
